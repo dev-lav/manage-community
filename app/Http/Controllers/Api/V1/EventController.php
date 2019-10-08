@@ -34,16 +34,6 @@ class EventController extends Controller
             'name'  => $request->name,
             'description' => $request->description
         ]);
-
-       //  $response = array(
-       //  'status_code' => 200,
-       //  'success' => true,
-       //  'message' => "success",
-       //  'data' => Event::find($request->id);
-       //  );
-
-       // return response()->json($response, 200);
-
         return response()->json($create, 200);
     }
 }

@@ -18,12 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function(){
-	
-	// Event Routes
-	Route::get('events','Api\V1\EventController@index');
-	Route::post('events', 'Api\V1\EventController@store');
-	// Route::delete('')
-
 
 	Route::get('positions', 
 		'Api\V1\PositionController@getListPosition'
@@ -40,5 +34,5 @@ Route::group(['prefix' => 'v1'], function(){
 	Route::delete('positions/{positionId}',
 		'Api\V1\PositionController@deleteSinglePositionData'
 	);
-
+	
 });
