@@ -9,17 +9,11 @@ use App\Crew;
 
 class CrewController extends Controller
 {
-    private $crew;
-
-    public function __construct(Crew $crew)
-    {
-        $this->crew = $crew;
-    }
 
     public function getListCrew(){
     	
     	return CrewResource::collection(
-    			$this->crew->paginate()
+    			     Crew::paginate()
     		);
 
     }
@@ -28,12 +22,11 @@ class CrewController extends Controller
 
     	$attributes = $request->json()->all();
     	
-    	$this->crew->create($attributes);
+    	Crew::create($attributes);
 
     	return response(
     			new CrewResource(
-    				$this->crew
-                    ->latest()->first())
+    				Crew::latest()->first())
     		);
     }
 
@@ -41,7 +34,7 @@ class CrewController extends Controller
 
         return response(
             new CrewResource(
-                $this->crew->find($crewId)
+                    Crew::findOrFail($crewId)
             )
         );
     }
@@ -50,20 +43,20 @@ class CrewController extends Controller
 
         $attributes = $request->json()->all();
         
-        $this->crew->findOrFail($crewId)
+        Crew::findOrFail($crewId)
                    ->update($attributes);
 
         return response(
             new CrewResource(
-                $this->crew->find($crewId)
+                Crew::findOrFail($crewId)
             )
         );            
     }
 
     public function deleteSingleCrewData($crewId){
     	
-        $this->crew->findOrFail($crewId)
-                   ->delete();   
+        Crew::findOrFail($crewId)
+                       ->delete();   
 
         return response()->json("successfully deleted!");
 

@@ -49,5 +49,7 @@ class Crew extends Model
   	public function position(){
   		
       return $this->belongsTo('App\Position', 'position_id');
+
+    }
   	
 }
