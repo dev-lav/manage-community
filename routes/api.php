@@ -35,5 +35,5 @@ Route::group(['prefix' => 'v1'], function(){
 		Route::delete('positions/{positionId}',
 			'Api\V1\PositionController@deleteSinglePositionData'
 		);
-
+		Route::apiResource('program', 'Api\V1\ProgramController');
 });
