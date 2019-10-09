@@ -36,4 +36,5 @@ Route::group(['prefix' => 'v1'], function(){
 			'Api\V1\PositionController@deleteSinglePositionData'
 		);
 
+		Route::apiResource('partners', 'Api\V1\PartnerController');
 });
