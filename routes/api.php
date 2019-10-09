@@ -104,4 +104,7 @@ Route::group(['prefix' => 'v1'], function(){
 			'Api\V1\EventPartnerController@deleteSingleEventPartnerData'
 		);
 
+		Route::apiResource('venues', 'Api\V1\VenueController');
+
+		Route::apiResource('partners', 'Api\V1\PartnerController');
 });
