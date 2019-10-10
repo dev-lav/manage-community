@@ -53,4 +53,21 @@ Route::group(['prefix' => 'v1'], function(){
 			'Api\V1\EventController@deleteSingleEventData'
 		);
 
+
+		Route::get('eventpartners', 
+			'Api\V1\EventPartnerController@getListEventPartner'
+		);
+		Route::post('eventpartners',
+			'Api\V1\EventPartnerController@createEventPartnerData'
+		);
+		Route::get('eventpartners/{eventId}',
+			'Api\V1\EventPartnerController@getEventPartnerById'
+		);
+		Route::put('eventpartners/{eventId}',
+			'Api\V1\EventPartnerController@updateSingleEventPartnerData'
+		);
+		Route::delete('eventpartners/{eventId}',
+			'Api\V1\EventPartnerController@deleteSingleEventPartnerData'
+		);
+
 });
