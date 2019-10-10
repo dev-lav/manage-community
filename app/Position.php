@@ -23,4 +23,15 @@ class Position extends Model
   		'description',
   	];
 
+    /**
+    * Eloquent relationship for this model 
+    * with crew model  
+    * One to One relationship
+    * @return void
+    */
+    public function crew(){
+
+      return $this->hasOne('App\Crew', 'position_id');
+  
+    }
 }

@@ -69,6 +69,22 @@ Route::group(['prefix' => 'v1'], function(){
 		);
 		Route::delete('crews/{crewId}',
 			'Api\V1\CrewController@deleteSingleCrewData'
+
+                  
+		Route::get('events', 
+			'Api\V1\EventController@getListEvent'
+		);
+		Route::post('events',
+			'Api\V1\EventController@createEventData'
+		);
+		Route::get('events/{eventId}',
+			'Api\V1\EventController@getEventById'
+		);
+		Route::put('events/{eventId}',
+			'Api\V1\EventController@updateSingleEventData'
+		);
+		Route::delete('events/{eventId}',
+			'Api\V1\EventController@deleteSingleEventData'
 		);
 
 });
