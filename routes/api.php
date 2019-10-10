@@ -20,6 +20,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function(){
 
+
+		Route::get('communities', 
+			'Api\V1\CommunityController@getListCommunity'
+		);
+		Route::post('communities',
+			'Api\V1\CommunityController@createCommunityData'
+		);
+		Route::get('communities/{communityId}',
+			'Api\V1\CommunityController@getCommunityDataById'
+		);
+		Route::put('communities/{communityId}',
+			'Api\V1\CommunityController@updateSingleCommunityData'
+		);
+		Route::delete('CommunityController/{communityId}',
+			'Api\V1\PositionController@deleteSingleCommunityData'
+		);
+
+
 		Route::get('positions', 
 			'Api\V1\PositionController@getListPosition'
 		);
