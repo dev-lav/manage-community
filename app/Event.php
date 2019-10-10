@@ -11,8 +11,9 @@ class Event extends Model
 
     protected $fillable = [
     	'crew_id',
-    	'vanue_id',
-    	'date',
+    	'venue_id',
+        'date',
+        'name',
     	'description',
     ];
 
@@ -20,9 +21,4 @@ class Event extends Model
     	'created_at',
     	'updated_at'
     ];
-
-
-    public function listDataEvent(){
-
-    }
 }
