@@ -70,4 +70,21 @@ Route::group(['prefix' => 'v1'], function(){
 			'Api\V1\EventPartnerController@deleteSingleEventPartnerData'
 		);
 
+
+		Route::get('programs', 
+			'Api\V1\ProgramController@getListProgram'
+		);
+		Route::post('programs',
+			'Api\V1\ProgramController@createProgramData'
+		);
+		Route::get('programs/{programId}',
+			'Api\V1\ProgramController@getProgramById'
+		);
+		Route::put('programs/{programId}',
+			'Api\V1\ProgramController@updateSingleProgramData'
+		);
+		Route::delete('programs/{programId}',
+			'Api\V1\ProgramController@deleteSingleProgramData'
+		);
+
 });

@@ -51,5 +51,16 @@ class Crew extends Model
       return $this->belongsTo('App\Position', 'position_id');
 
     }
+
+
+    /**
+    * Eloquent relationship for this model 
+    * with programs model  
+    * One to Mane relationship
+    * @return void
+    */
+    public function programs(){
+      return $this->hasMany('App\Program', 'crew_id');
+    }
   	
 }
