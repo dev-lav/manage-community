@@ -54,6 +54,23 @@ Route::group(['prefix' => 'v1'], function(){
 			'Api\V1\PositionController@deleteSinglePositionData'
 		);
 
+
+		Route::get('crews', 
+		'Api\V1\CrewController@getListCrew'
+		);
+		Route::post('crews',
+			'Api\V1\CrewController@createCrewData'
+		);
+		Route::get('crews/{crewId}',
+			'Api\V1\CrewController@getCrewById'
+		);
+		Route::put('crews/{crewId}',
+			'Api\V1\CrewController@updateSingleCrewData'
+		);
+		Route::delete('crews/{crewId}',
+			'Api\V1\CrewController@deleteSingleCrewData'
+
+                  
 		Route::get('events', 
 			'Api\V1\EventController@getListEvent'
 		);
