@@ -19,7 +19,7 @@ class StorePartnerRequest extends FormRequest
             'type' => 'required|max:50',
             'pic_name' => 'required|max:50',
             'pic_phone' => 'required|max:20',
-            'pic_email' => 'required|max:50',
+            'pic_email' => 'required|email|max:50',
         ];
     }
 }
