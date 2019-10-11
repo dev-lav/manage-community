@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Partner\StorePartnerRequest;
+use App\Http\Requests\Partner\UpdatePartnerRequest;
 use App\Http\Resources\Api\V1\PartnerResource;
 use App\Partner;
 
@@ -27,10 +28,9 @@ class PartnerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePartnerRequest $request)
     {
-        $data = $request->only('name', 'description', 'type', 'pic_name', 'pic_phone', 'pic_email');
-        $partner = Partner::create($data);
+        $partner = Partner::create($request->validated());
 
         return new PartnerResource($partner);
     }
@@ -53,12 +53,11 @@ class PartnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Partner $partner)
+    public function update(UpdatePartnerRequest $request, Partner $partner)
     {
-        $data = $request->only('name', 'description', 'type', 'pic_name', 'pic_phone', 'pic_email');
-        $partner->update($data);
+        $partner->update($request->validated());
 
-        return new PartnerResource($partner);
+        return new PartnerResource($partner->fresh());
     }
 
     /**
