@@ -23,10 +23,17 @@ class CreateEventsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+
             $table
                 ->foreign('crew_id')
                 ->references('id')
                 ->on('crews')
+                ->onDelete('cascade');
+
+            $table
+                ->foreign('venue_id')
+                ->references('id')
+                ->on('venues')
                 ->onDelete('cascade');
         });
     }
