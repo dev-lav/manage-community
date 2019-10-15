@@ -31,4 +31,5 @@ class EventPartner extends Model
     public function event(){
         $this->belongsTo('App\Event');
     }
+
 }

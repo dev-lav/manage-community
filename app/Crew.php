@@ -48,11 +48,9 @@ class Crew extends Model
   	*/
   	public function position(){
   		
-      return $this->belongsTo('App\Position', 'position_id');
+      return $this->hasOne('App\Position');
 
     }
-<<<<<<< HEAD
-
 
     /**
     * Eloquent relationship for this model 
@@ -63,7 +61,16 @@ class Crew extends Model
     public function programs(){
       return $this->hasMany('App\Program', 'crew_id');
     }
-=======
->>>>>>> crew
-  	
+
+    /**
+    * Eloquent relationship for this model 
+    * with Event model  
+    * One to Mane relationship
+    * @return void
+    */
+
+  	public function events()
+    {
+      return $this->hasMany('App\Event', 'crew_id');
+    }
 }

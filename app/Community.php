@@ -27,17 +27,14 @@ class Community extends Model
   		'description',
   	];
 
-<<<<<<< HEAD
     /**
     * Eloquent relationship for this model 
     * with crew model  
     * One to Many relationship
     * @return void
     */
-    public function crews(){
+    public function crews()
+    {
       return $this->hasMany('App\Crew', 'community_id');
     }
-
-=======
->>>>>>> crew
 }

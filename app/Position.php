@@ -31,7 +31,7 @@ class Position extends Model
     */
     public function crew(){
 
-      return $this->hasOne('App\Crew', 'position_id');
+      return $this->belongsTo(Crew::class);
   
     }
 }

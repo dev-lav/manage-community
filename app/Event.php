@@ -21,4 +21,19 @@ class Event extends Model
     	'created_at',
     	'updated_at'
     ];
+
+    public function crew()
+    {
+        return $this->belongsTo('App\Crew', 'crew_id');
+    }
+
+    public function venue()
+    {
+        return $this->belongsTo('App\Venue', 'venue_id');
+    }
+
+    public function eventpartners()
+    {
+        return $this->hasMany('App\EventPartner', 'event_id');
+    }
 }
