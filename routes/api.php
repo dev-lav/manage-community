@@ -20,6 +20,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function(){
 
+
+		Route::get('communities', 
+			'Api\V1\CommunityController@getListCommunity'
+		);
+		Route::post('communities',
+			'Api\V1\CommunityController@createCommunityData'
+		);
+		Route::get('communities/{communityId}',
+			'Api\V1\CommunityController@getCommunityDataById'
+		);
+		Route::put('communities/{communityId}',
+			'Api\V1\CommunityController@updateSingleCommunityData'
+		);
+		Route::delete('CommunityController/{communityId}',
+			'Api\V1\PositionController@deleteSingleCommunityData'
+		);
+
+
 		Route::get('positions', 
 			'Api\V1\PositionController@getListPosition'
 		);
@@ -85,6 +103,22 @@ Route::group(['prefix' => 'v1'], function(){
 		);
 		Route::delete('programs/{programId}',
 			'Api\V1\ProgramController@deleteSingleProgramData'
+		);
+		
+		Route::get('crews', 
+		'Api\V1\CrewController@getListCrew'
+		);
+		Route::post('crews',
+			'Api\V1\CrewController@createCrewData'
+		);
+		Route::get('crews/{crewId}',
+			'Api\V1\CrewController@getCrewById'
+		);
+		Route::put('crews/{crewId}',
+			'Api\V1\CrewController@updateSingleCrewData'
+		);
+		Route::delete('crews/{crewId}',
+			'Api\V1\CrewController@deleteSingleCrewData'
 		);
 
 });

@@ -51,6 +51,7 @@ class Crew extends Model
       return $this->belongsTo('App\Position', 'position_id');
 
     }
+<<<<<<< HEAD
 
 
     /**
@@ -62,5 +63,7 @@ class Crew extends Model
     public function programs(){
       return $this->hasMany('App\Program', 'crew_id');
     }
+=======
+>>>>>>> crew
   	
 }

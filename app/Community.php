@@ -27,6 +27,7 @@ class Community extends Model
   		'description',
   	];
 
+<<<<<<< HEAD
     /**
     * Eloquent relationship for this model 
     * with crew model  
@@ -37,4 +38,6 @@ class Community extends Model
       return $this->hasMany('App\Crew', 'community_id');
     }
 
+=======
+>>>>>>> crew
 }
