@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\CommunityResource;
+use Illuminate\Support\Facades\Validator;
 use App\Community;
 
 class CommunityController extends Controller
@@ -20,6 +21,8 @@ class CommunityController extends Controller
     public function createCommunityData(Request $request){
 
         $data_request = $request->json()->all();
+
+        $this->validator($data_request)->validate();
 
         Community::create($data_request);
 
@@ -42,6 +45,8 @@ class CommunityController extends Controller
 
         $attributes = $request->json()->all();
 
+        $this->validator($attributes)->validate();
+
         Community::find($communityId)
                    ->update($attributes);
         
@@ -59,4 +64,15 @@ class CommunityController extends Controller
 
     }
 
+    public function validator(array $data)
+    {
+        return Validator::make($data,[
+            'name'  => 'required|string|max:50',
+            'email' => 'required|string|max:50|email',
+            'password' => 'required|min:6|string',
+            'vission' => 'required|string|max:250',
+            'mission' => 'required|string|max:250',
+            'description' => 'required|string|max:250'
+        ]);
+    }
 }
