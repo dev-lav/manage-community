@@ -33,8 +33,8 @@ class Community extends Model
     * One to Many relationship
     * @return void
     */
-    public function crews(){
+    public function crews()
+    {
       return $this->hasMany('App\Crew', 'community_id');
     }
-
 }
