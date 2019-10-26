@@ -53,11 +53,11 @@ Route::group(['prefix' => 'v1'], function(){
 	});
 
 	Route::group(['prefix' => 'crews'], function(){
-		Route::get('/', 'Api\V1\CrewController@getListCrew');
-		Route::post('/','Api\V1\CrewController@createCrewData');
-		Route::get('{crewId}', 'Api\V1\CrewController@getCrewById');
-		Route::put('{crewId}', 'Api\V1\CrewController@updateSingleCrewData');
-		Route::delete('{crewId}', 'Api\V1\CrewController@deleteSingleCrewData');
+		Route::get('/', 'Api\V1\CrewController@index');
+		Route::post('/','Api\V1\CrewController@create');
+		Route::get('{crewId}', 'Api\V1\CrewController@show');
+		Route::put('{crewId}', 'Api\V1\CrewController@update');
+		Route::delete('{crewId}', 'Api\V1\CrewController@delete');
 	});
 
 	Route::apiResource('venues', 'Api\V1\VenueController');

@@ -15,11 +15,7 @@ class CommunityController extends Controller
      * @return JSON
      */
      public function index(){
-    	
-        return CommunityResource::collection(
-                Community::paginate()
-        );
-    
+        return $this->apiResponseBuilder(200, Community::paginate());
     }
 
     /**
@@ -34,7 +30,6 @@ class CommunityController extends Controller
             $newData = Community::create($data);
             return $this->apiResponseBuilder(200,  $newData);
         }
-
         return $this->apiUnprocessableEntityResponse($validation->all());
     }
 
@@ -53,8 +48,9 @@ class CommunityController extends Controller
      * @param  integer  $communityId 
      * @return JSON               
      */
-    public function update(Request $request, $communityId, StoreCommunityValidator $validator){
+    public function update(Request $request, $communityId){
         $data = $request->json()->all();
+        $validator = new StoreCommunityValidator($communityId);
         $validation = $validator->validate($data);
         if ($validation === true) {
             $updatedData = Community::find($communityId)->update($data);
