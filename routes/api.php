@@ -22,11 +22,11 @@ Route::group(['prefix' => 'v1'], function(){
 		Route::delete('{communityId}','Api\V1\PositionController@delete');
 	});
 	Route::group(['prefix' => 'positions'], function(){
-		Route::get('/', 'Api\V1\PositionController@getListPosition');
-		Route::post('/','Api\V1\PositionController@createPositionData');
-		Route::get('{positionId}','Api\V1\PositionController@getPositionById');
-		Route::put('{positionId}','Api\V1\PositionController@updateSinglePositionData');
-		Route::delete('{positionId}','Api\V1\PositionController@deleteSinglePositionData');
+		Route::get('/', 'Api\V1\PositionController@index');
+		Route::post('/','Api\V1\PositionController@create');
+		Route::get('{positionId}','Api\V1\PositionController@show');
+		Route::put('{positionId}','Api\V1\PositionController@update');
+		Route::delete('{positionId}','Api\V1\PositionController@delete');
 	});
 
 	Route::group(['prefix' => 'events'], function(){
