@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\V1\CommunityResource;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Community\StoreCommunityValidator;
 use App\Community;
 
 class CommunityController extends Controller
 {
-     public function getListCommunity(){
+    /**
+     * get all comuunity data using pagination
+     * @return JSON
+     */
+     public function index(){
     	
         return CommunityResource::collection(
                 Community::paginate()
@@ -18,61 +22,54 @@ class CommunityController extends Controller
     
     }
 
-    public function createCommunityData(Request $request){
+    /**
+     * store new data to database
+     * @param  Request $request 
+     * @return JSON
+     */
+    public function create(Request $request, StoreCommunityValidator $validator){
+        $data = $request->json()->all();
+        $validation = $validator->validate($data);
+        if ($validation === true) {
+            $newData = Community::create($data);
+            return $this->apiResponseBuilder(200,  $newData);
+        }
 
-        $data_request = $request->json()->all();
-
-        $this->validator($data_request)->validate();
-
-        Community::create($data_request);
-
-        return response(
-            new CommunityResource(
-                Community::latest()
-                ->first()), 200);
+        return $this->apiUnprocessableEntityResponse($validation->all());
     }
 
-    public function getCommunityDataById($communityId){
-
-        return response(
-                new CommunityResource(
-                 Community::find($communityId),200)
-            );
-   
+    /**
+     * show detail data by ID
+     * @param  integer $communityId 
+     * @return JSON              
+     */
+    public function show($communityId){
+        return $this->apiResponseBuilder(200, Community::find($communityId));
     }
 
-    public function updateSingleCommunityData(Request $request, $communityId){
-
-        $attributes = $request->json()->all();
-
-        $this->validator($attributes)->validate();
-
-        Community::find($communityId)
-                   ->update($attributes);
-        
-        return response(
-                new CommunityResource(
-                    Community::find($communityId)), 200
-            );
+    /**
+     * update selected data
+     * @param  Request $request     
+     * @param  integer  $communityId 
+     * @return JSON               
+     */
+    public function update(Request $request, $communityId, StoreCommunityValidator $validator){
+        $data = $request->json()->all();
+        $validation = $validator->validate($data);
+        if ($validation === true) {
+            $updatedData = Community::find($communityId)->update($data);
+            return $this->apiResponseBuilder(200,  Community::find($communityId));
+        }
+        return $this->apiUnprocessableEntityResponse($validation->all());
     }
 
-    public function deleteSingleCommunityData($communityId){
-
+    /**
+     * delete selected data
+     * @param  [type] $communityId [description]
+     * @return [type]              [description]
+     */
+    public function delete($communityId){
         Community::find($communityId)->delete();
-
-        return response()->json('Has deleted!');            
-
-    }
-
-    public function validator(array $data)
-    {
-        return Validator::make($data,[
-            'name'  => 'required|string|max:50',
-            'email' => 'required|string|max:50|email',
-            'password' => 'required|min:6|string',
-            'vission' => 'required|string|max:250',
-            'mission' => 'required|string|max:250',
-            'description' => 'required|string|max:250'
-        ]);
+        return response()->json('Data has been deleted');
     }
 }

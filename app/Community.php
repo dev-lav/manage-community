@@ -27,6 +27,8 @@ class Community extends Model
   		'description',
   	];
 
+    protected $hidden = ['password'];
+    
     /**
     * Eloquent relationship for this model 
     * with crew model  
